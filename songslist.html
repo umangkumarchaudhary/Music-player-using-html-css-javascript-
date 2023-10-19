@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+</head>
+<body>
+    <ul id="song-list" class="song-list">
+        <!-- Song items will be added here dynamically -->
+    </ul>
+
+    <script>
+        // Function to add a song to the song list
+        function addSongToPlaylist(songName, artist) {
+            const songList = document.getElementById("song-list");
+
+            // Create a new list item for the song
+            const songItem = document.createElement("li");
+
+            // Create a new Audio element
+            const audio = new Audio(`Music/${songName}.mp3`);
+
+            // Add an event listener to play the song when the list item is clicked
+            songItem.addEventListener("click", () => {
+                audio.play();
+            });
+
+            songItem.textContent = `${songName} - ${artist}`;
+            
+            // Append the song item to the song list
+            songList.appendChild(songItem);
+        }
+
+        // Example of how to add a song to the list
+        addSongToPlaylist("song1", "Artist 1");
+        addSongToPlaylist("song2", "Artist 2");
+    </script>
+</body>
+</html>

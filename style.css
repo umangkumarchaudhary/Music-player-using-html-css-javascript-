@@ -1,0 +1,317 @@
+body {
+  background-color: lightgreen;
+
+  /* Smoothly transition the background color */
+  transition: background-color .5s;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+        .header {
+            background-color:black;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle div {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+
+        .menu-toggle.active div:first-child {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-toggle.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active div:last-child {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .nav {
+            display: flex;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                z-index: 1;
+                align-items: center;
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .nav a {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px; /* Add padding for better spacing on smaller screens */
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.track-art {
+  height: 250px;
+  width: 250px;
+  background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-size: cover;
+  border-radius: 15%;
+  margin: 10px 0; /* Adjust margin for better spacing */
+}
+
+.now-playing {
+  font-size: 1rem;
+  margin: 10px 0; /* Adjust margin for better spacing */
+}
+
+.track-name {
+  font-size: 3rem;
+  margin: 10px 0; /* Adjust margin for better spacing */
+}
+@media screen and (max-width: 768px) {
+  .track-name {
+    text-align: center; /* Center align the text when the screen width is 768px or less */
+  }
+}
+
+.track-artist {
+  font-size: 1.5rem;
+  margin: 10px 0; /* Adjust margin for better spacing */
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0; /* Adjust margin for better spacing */
+}
+/* CSS for the currently playing song in the queue */
+ul#queue-list li.playing {
+  background-color: blue;
+  color: white;
+}
+
+
+.playpause-track, .prev-track, .next-track {
+  padding: 15px; /* Increase button padding for better touch usability on small screens */
+  opacity: 0.8;
+  transition: opacity .2s;
+}
+
+.playpause-track:hover, .prev-track:hover, .next-track:hover {
+  opacity: 1.0;
+}
+
+.slider_container {
+  width: 100%; /* Expand the slider container to the full width */
+  max-width: 400px; /* Set a maximum width for large screens */
+  display: flex;
+  flex-direction: column; /* Stack the sliders vertically on small screens */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modify the appearance of the slider */
+.seek_slider, .volume_slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: black;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+/* Modify the appearance of the slider thumb */
+.seek_slider::-webkit-slider-thumb, .volume_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.seek_slider:hover, .volume_slider:hover {
+  opacity: 1.0;
+}
+
+.seek_slider {
+  width: 50%; /* Expand the seek slider to the full width */
+  margin: 10px 0; /* Adjust margin for better spacing */
+}
+
+
+
+.current-time, .total-duration {
+  padding: 10px;
+  margin: 10px 0; /* Adjust margin for better spacing */
+}
+
+i.fa-volume-down, i.fa-volume-up {
+  padding: 10px;
+}
+
+i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward {
+  cursor: pointer;
+}
+
+
+/* Style for the select element */
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; /* Center vertically on the page */
+  margin: auto;
+}
+
+/* Container for the playlist selection elements */
+.playlist-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the playlist selector dropdown */
+.custom-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+/* Style for the load playlist button */
+/* Add margin-right to the custom-button class to create spacing between buttons */
+.custom-button {
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px; /* Adjust the value as needed for spacing */
+  width: 200px;
+}
+
+
+/* Hover effect for the button */
+.custom-button:hover {
+  background-color: #0e7d31;
+}
+
+@media (max-width: 768px) {
+  .playlist-container {
+      flex-direction: column; /* Stack items vertically on smaller screens */
+      margin-top: 30px;
+      gap: 2px;
+  }
+  .centered-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

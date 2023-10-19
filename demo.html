@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attractive Music Player</title>
+    <link rel="stylesheet" href="demo.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1>Music Player</h1>
+    <div>
+        <button id="createPlaylist">Add songs</button>
+        <button><a href="index.html">Go To Home</a></button>
+    </div>
+    <div>
+        <h2>Songs</h2>
+        <ul id="playlist"></ul>
+    </div>
+    <div id="player-container" class="centered-container" style="background-color: blue;">
+        
+        <audio id="player" controls></audio>
+        <div id="currentlyPlaying">
+            Currently playing: <span id="currentSongName">No song selected</span>
+        </div>
+        <img id="coverImage" src="" alt="Song Cover" style="max-width: 100%;">
+    </div>
+       
+    </div>
+    <script>
+        const playlist = document.getElementById("playlist");
+        const createPlaylistButton = document.getElementById("createPlaylist");
+        const player = document.getElementById("player");
+        const currentSongNameElement = document.getElementById("currentSongName");
+        const coverImageElement = document.getElementById("coverImage");
+
+        createPlaylistButton.addEventListener("click", () => {
+            const songName = prompt("Enter the name of the song:");
+            if (songName) {
+                const audioUrl = prompt("Enter the URL of the audio to add to your playlist:");
+                if (audioUrl) {
+                    const imageUrl = prompt("Enter the URL of the song cover image:");
+                    if (imageUrl) {
+                        const li = document.createElement("li");
+                        li.innerHTML = `
+                            <span>${songName}</span>
+                            <button data-url="${audioUrl}" data-image="${imageUrl}">Play</button>
+                        `;
+                        playlist.appendChild(li);
+                    }
+                }
+            }
+        });
+
+        playlist.addEventListener("click", (event) => {
+            const target = event.target;
+            if (target.tagName === "BUTTON") {
+                const audioUrl = target.getAttribute("data-url");
+                const imageUrl = target.getAttribute("data-image");
+                if (audioUrl) {
+                    player.src = audioUrl;
+                    player.play();
+                    const songName = target.previousElementSibling.textContent;
+                    currentSongNameElement.textContent = songName;
+                    coverImageElement.src = imageUrl;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

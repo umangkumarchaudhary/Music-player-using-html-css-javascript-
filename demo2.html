@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlist Manager</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #1db954;
+            color: white;
+            padding: 20px;
+        }
+
+        #createPlaylist {
+            background-color: #1db954;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #playlists {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #playlists li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #playlists li:hover {
+            background-color: #e5e5e5;
+            transform: scale(1.05);
+        }
+
+        #playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #playlist li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #playlist li:hover {
+            background-color: #e5e5e5;
+            transform: scale(1.05);
+        }
+
+        #player {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 768px) {
+            #createPlaylist, #playlists li, #playlist li {
+                padding: 8px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Playlist Manager</h1>
+    <div>
+        <button id="createPlaylist">add song</button>
+    </div>
+    <div>
+        <h2>Your Playlists</h2>
+        <ul id="playlists"></ul>
+    </div>
+    <div>
+        <h2>Current Playlist</h2>
+        <ul id="playlist"></ul>
+    </div>
+    <div>
+        <audio id="player" controls></audio>
+    </div>
+    <script>
+        const playlists = document.getElementById("playlists");
+        const createPlaylistButton = document.getElementById("createPlaylist");
+        const player = document.getElementById("player");
+        const currentPlaylist = document.getElementById("playlist");
+
+        const playlistData = {}; // Object to store playlists
+
+        createPlaylistButton.addEventListener("click", () => {
+            const playlistName = prompt("Enter a name for your playlist:");
+            if (playlistName) {
+                playlistData[playlistName] = [];
+                displayPlaylists();
+            }
+        });
+
+        function displayPlaylists() {
+            playlists.innerHTML = "";
+            for (const playlistName in playlistData) {
+                const li = document.createElement("li");
+                li.textContent = playlistName;
+                li.addEventListener("click", () => loadPlaylist(playlistName));
+                playlists.appendChild(li);
+            }
+        }
+
+        function loadPlaylist(playlistName) {
+            currentPlaylist.innerHTML = "";
+            for (const song of playlistData[playlistName]) {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <span>${song.name}</span>
+                    <button data-url="${song.url}">Play</button>
+                `;
+                currentPlaylist.appendChild(li);
+            }
+        }
+
+        playlists.addEventListener("click", (event) => {
+            const target = event.target;
+            if (target.tagName === "LI") {
+                loadPlaylist(target.textContent);
+            }
+        });
+    </script>
+</body>
+</html>
